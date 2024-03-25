@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Image, Stack, Text, Button, Link, Center } from "@chakra-ui/react";
+import { Box, Image, Stack, Text, Button, Link, Center, useColorMode } from "@chakra-ui/react";
 // import axios from "axios";
 // import { authContext } from '../Context/AuthContext';
 import logoImg from "../Images/logo.png";
@@ -14,10 +14,14 @@ import { FcGoogle } from "react-icons/fc";
 
 export const Login = () => {
   // const {isAuth, setIsAuth} = useContext(authContext);
+  const {colorMode, toggleColorMode} = useColorMode();
 
   
   return (
-    <Box  fontFamily={"Open Sans"}>
+    <Box  
+    fontFamily={"Open Sans"}
+    bgColor="black"
+    >
        
       <Center 
         p="10px 100px"
