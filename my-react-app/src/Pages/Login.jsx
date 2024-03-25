@@ -48,13 +48,20 @@ export const Login = () => {
         >
           <Stack spacing={"24px"}>
             <Text size={"20px"}>Create a new account</Text>
+            
             <Button 
             border={"1px solid #707172"}
             display={"Flex"}
             gap={"10px"}
             p="8px 16px"
             borderRadius={"4px"}
-            ><FcGoogle /> Sign Up with Google</Button>
+            ><FcGoogle /> 
+            <Link 
+            href='https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://localhost:3000/onebox'
+            >
+              Sign Up with Google
+            </Link>
+            </Button>
           </Stack>
 
           <Stack

@@ -2,7 +2,7 @@ import { Switch, Box, Text, Flex, Select, useColorMode} from "@chakra-ui/react";
 
 export const OneboxNavbar = () =>{
     const { colorMode, toggleColorMode } = useColorMode();
-    console.log(colorMode)
+    // console.log(colorMode)
     return (
         <Box w="100%">
             <Flex 
