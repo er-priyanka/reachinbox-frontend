@@ -1,6 +1,7 @@
 import './App.css';
 import {Login} from './Pages/Login';
 import { Box, Button, useColorMode } from "@chakra-ui/react";
+import Onebox from './Pages/Onebox';
 
 function App() {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -16,7 +17,7 @@ function App() {
         >Toggle {colorMode == 'light' ? 'Dark' : 'Light'} </Button>
 
       </Box> */}
-     <Login />
+      <Onebox />
     </div>
   );
 }

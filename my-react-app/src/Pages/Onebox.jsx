@@ -1,8 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { Box, Flex } from "@chakra-ui/react";
+import { Sidebar } from '../Components/Sidebar';
 
-function Onebox() {
+const Onebox = ()=> {
   return (
-    <div>Onebox</div>
+    <Box>
+      <Flex>
+        {/* sidebar  */}
+        <Sidebar />
+        <Box>
+            
+        </Box>
+      </Flex>
+    </Box>
   )
 }
 
