@@ -1,6 +1,8 @@
-import { Switch, Box, Text, Flex, Select, Option} from "@chakra-ui/react";
+import { Switch, Box, Text, Flex, Select, useColorMode} from "@chakra-ui/react";
 
 export const OneboxNavbar = () =>{
+    const { colorMode, toggleColorMode } = useColorMode();
+    console.log(colorMode)
     return (
         <Box w="100%">
             <Flex 
@@ -18,7 +20,7 @@ export const OneboxNavbar = () =>{
                 gap="22px"
                 >
                     
-                    <Switch />
+                    <Switch onChange={toggleColorMode} />
                     <Select>
                         <option value="tims_workspace">Tim's Workspace</option>
                     </Select>

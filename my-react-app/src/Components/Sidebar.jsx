@@ -1,4 +1,4 @@
-import {Box, Center, Image, Text, Flex, Stack, List, ListItem, Icon } from "@chakra-ui/react";
+import {Box, Center, Image, Text, Flex, useColorMode, Stack, List, ListItem, Icon } from "@chakra-ui/react";
 import { MdHome, MdPersonSearch, MdMail, MdViewList, MdBarChart } from "react-icons/md";
 import { IoIosSend } from "react-icons/io";
 import { FaInbox } from "react-icons/fa";
@@ -15,6 +15,7 @@ const listItems = [
     MdBarChart,
 ]
 export const Sidebar = () =>{
+  const {colorMode, toggleColorMode} = useColorMode();
     return (
         <Flex 
         width="4%"
@@ -62,7 +63,7 @@ export const Sidebar = () =>{
             >   
               {
                 listItems.map((item, i) => (
-                  <Box>
+                  <Box key={i}>
                       <Icon w="28px" h="28px" as={item}/>
                   </Box>    
                   
@@ -86,7 +87,9 @@ export const Sidebar = () =>{
             justifyContent="center"
             alignItems="center"
             >
-              <Text>PS</Text>
+              <Text 
+              color={colorMode=='light'? "white": "white"}
+              >PS</Text>
             </Box>
             
           </Box>
