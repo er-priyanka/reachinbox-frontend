@@ -1,4 +1,5 @@
 # Reachinbox-frontend
+Deployed link: [https://6601bb59d0ce57281c277850--melodious-biscotti-e11174.netlify.app/]
 
 The assignment is to use the designs and APIs provided and create a functional web app as per the following
 instructions -
