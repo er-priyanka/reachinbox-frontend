@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, Flex } from "@chakra-ui/react";
 import { Sidebar } from '../Components/Sidebar';
+import { OneboxNavbar } from '../Components/OneboxNavbar';
+import { Content } from '../Components/Content';
 
 const Onebox = ()=> {
   return (
@@ -8,8 +10,9 @@ const Onebox = ()=> {
       <Flex>
         {/* sidebar  */}
         <Sidebar />
-        <Box>
-            
+        <Box w="96%">
+            <OneboxNavbar />
+            <Content />
         </Box>
       </Flex>
     </Box>

@@ -17,7 +17,7 @@ const listItems = [
 export const Sidebar = () =>{
     return (
         <Flex 
-        width="56px"
+        width="4%"
         height="100vh" 
         direction="column"
         borderRight="1px"
@@ -27,9 +27,9 @@ export const Sidebar = () =>{
         >
           <Box 
           w="48px"
-          h="70px"
+          h="90px"
           borderRadius="2px"
-          // padding="8px 12px 8px 12px"
+          // padding="8px 12px 12px 12px"
           >
             <Box
             w="48px"
@@ -52,7 +52,7 @@ export const Sidebar = () =>{
           >
             <Flex
             w="48px"
-            h="80vh"
+            h="85vh"
             direction="column"
             justifyContent="center"
             alignItems="center"
@@ -75,7 +75,6 @@ export const Sidebar = () =>{
 
           <Box
           w="48px"
-          
           padding="12px 8px"
           >
             <Box 
