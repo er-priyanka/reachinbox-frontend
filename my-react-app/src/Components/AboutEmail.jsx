@@ -31,7 +31,8 @@ export const AboutEmail = () =>{
             {/* Header */}
             <Flex 
             borderBottom="1px"
-            borderColor={colorMode=='light'?"black" :"#33383F"}
+            // borderColor={colorMode=='light'?"black" :"#33383F"}
+            borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
             gap="8px"
             padding="20px"
             alignItems="center"
@@ -48,11 +49,11 @@ export const AboutEmail = () =>{
                         fontFamily="Inter"
                         fontWeight="600"
                         fontSize="14px"
-                        color={colorMode=="light"?"black":"white"}
+                        color={colorMode=="light"?"#343A40":"white"}
                         >{user.fromName}</Text>
                         <Text
                         fontFamily="Inter"
-                        color="#666666"
+                        color={colorMode=='light' ? "rgba(52, 58, 64, 0.7)": "#666666"}
                         fontSize="12px"
                         >{user.fromEmail}</Text>
                     
@@ -64,14 +65,14 @@ export const AboutEmail = () =>{
                 fontSize="12px"
                 fontFamily="Open Sans"
                 fontWeight="600"
-                
                 justifyContent="end"
                 >
                     <Select 
                     w="fit-content"
                     borderRadius="4px"
                     padding="8px"
-                    borderColor="#343A40"
+                    color={colorMode == 'light' ? "#172B4D" : "white"}
+                    borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
                     bgColor={colorMode=="light"?"white":"#1F1F1F"}
                     fontSize="12px"
                     >
@@ -82,7 +83,8 @@ export const AboutEmail = () =>{
                     width="fit-content"
                     borderRadius="4px"
                     padding="8px"
-                    borderColor="#343A40"
+                    color={colorMode == 'light' ? "#172B4D" : "white"}
+                    borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
                     bgColor={colorMode=="light"?"white":"#1F1F1F"}
                     fontSize="12px"
                     >
@@ -92,7 +94,8 @@ export const AboutEmail = () =>{
                     <Button
                     borderRadius="4px"
                     padding="8px"
-                    borderColor={colorMode=="light"?"black":"#343A40"}
+                    border="1px"
+                    borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
                     bgColor={colorMode=="light"?"white":"#1F1F1F"}
                     fontSize="12px"
                     >...</Button>
@@ -110,23 +113,47 @@ export const AboutEmail = () =>{
             padding="12px 16px"
             borderRadius="4px"
             border="1px"
-            borderColor="#343A40"
+            borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
             bgColor={colorMode=="light"?"white":"#141517"}
             >
                 <Stack>
                     <Flex justifyContent="space-between">
-                        <Text>{user.subject}</Text>
-                        <Text>{user.sentAt}</Text>
+                        <Text
+                        fontFamily="Open Sans"
+                        fontWeight="600"
+                        fontSize="14px"
+                        color={colorMode=='light' ? "black" : "#F8FAFC"}
+                        >{user.subject}</Text>
+                        <Text
+                        fontFamily={"Inter"}
+                        fontWeight={"400"}
+                        fontSize="14px"
+                        color={colorMode=='light' ? "#637381" : "#7F7F7F"}
+                        >{user.sentAt}</Text>
                     </Flex>
                     
-                    <Flex gap="5px">
+                    <Flex gap="5px"
+                    fontFamily={"Inter"}
+                    fontWeight={"400"}
+                    fontSize="14px"
+                    color={colorMode=='light' ? "#637381" : "#7F7F7F"}
+                    >
                         <Text>from: {user.fromEmail}</Text>
                         <Text>cc: {user.cc}</Text>
                     </Flex>
-                    <Text>to: {user.toEmail}</Text>
+                    <Text
+                    fontFamily={"Inter"}
+                    fontWeight={"400"}
+                    fontSize="14px"
+                    color={colorMode=='light' ? "#637381" : "#7F7F7F"}
+                    >to: {user.toEmail}</Text>
                 </Stack>
                 <Box dangerouslySetInnerHTML={{__html:user.body}}
                 paddingLeft="1px"
+                fontFamily={"Open Sans"}
+                fontWeight={"400"}
+                fontSize="14px"
+                color={colorMode=='light' ? "#172B4D" : "#E1E0E0"}
                 ></Box>
             </Stack>
 

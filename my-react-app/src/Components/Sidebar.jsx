@@ -3,6 +3,7 @@ import { MdHome, MdPersonSearch, MdMail, MdViewList, MdBarChart } from "react-ic
 import { IoIosSend } from "react-icons/io";
 import { FaInbox } from "react-icons/fa";
 import logo1 from "../Images/Logo_1.png";
+import logoBlack from "../Images/Logo_black.png";
 
 
 const listItems = [
@@ -22,7 +23,7 @@ export const Sidebar = () =>{
         height="100vh" 
         direction="column"
         borderRight="1px"
-        borderColor="#343A40"
+        borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
         padding="0px 4px"
         
         >
@@ -43,7 +44,8 @@ export const Sidebar = () =>{
               w="26px"
               h="24px"
               borderRadius="2px"
-               src={logo1} />
+               src={ (colorMode=='light')? logoBlack : logo1} 
+               />
             </Box>
           </Box>
 
@@ -64,7 +66,12 @@ export const Sidebar = () =>{
               {
                 listItems.map((item, i) => (
                   <Box key={i}>
-                      <Icon w="28px" h="28px" as={item}/>
+                      <Icon 
+                      w="28px"
+                      h="28px" 
+                      as={item}
+                      color={(colorMode=='light') ? '#919EAB' : '#AEAEAE'}
+                      />
                   </Box>    
                   
                      

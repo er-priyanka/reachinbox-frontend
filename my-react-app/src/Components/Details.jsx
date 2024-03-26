@@ -36,8 +36,7 @@ const boxStyleProps = {
     w:"32px",
     h:"32px",
     borderRadius:"50%",
-    border:"1px solid #41464B",
-    bgColor:"#23272C",
+    border:"1px",
     display:"flex",
     alignItems:"center",
     justifyContent:"center"
@@ -51,13 +50,13 @@ export const Details = () =>{
         w="20%"
         bgColor={colorMode=="light"?"white":"black"}
         borderLeft="1px"
-        borderColor={colorMode=="light"?"black":"#353533"}
+        borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
         textAlign="left"
         padding="16px 5px"
         >
             <Heading {...headingStyle}
-            bgColor={colorMode=='light' ? "gray" :"#23272C"}
-
+            bgColor={colorMode=='light' ? "#ECEFF3" :"#23272C"}
+            color={colorMode=='light' ? "#454F5B" : "#FFFFFF"}
             >
                 Lead Details
             </Heading>
@@ -67,30 +66,52 @@ export const Details = () =>{
             >
                 
                 <Flex {...styleProps}>
-                    <Text>Name</Text>
-                    <Text>{user.Name}</Text>
+                    <Text 
+                    color={colorMode=='light' ? "#637381" : "white"}
+                    >Name</Text>
+                    <Text 
+                    color={colorMode=='light'? "black" : "#B9B9B9"}
+                    >{user.Name}</Text>
                 </Flex>
                 <Flex {...styleProps}>
-                    <Text>Contact No</Text>
-                    <Text>{user["Contact No"]}</Text>
+                    <Text
+                    color={colorMode=='light' ? "#637381" : "white"}
+                    >Contact No</Text>
+                    <Text
+                    color={colorMode=='light'? "black" : "#B9B9B9"}
+                    >{user["Contact No"]}</Text>
                 </Flex>
                 <Flex {...styleProps}>
-                    <Text>Email ID</Text>
-                    <Text>{user["Email Id"]}</Text>
+                    <Text
+                    color={colorMode=='light' ? "#637381" : "white"}
+                    >Email ID</Text>
+                    <Text
+                    color={colorMode=='light'? "black" : "#B9B9B9"}
+                    >{user["Email Id"]}</Text>
                 </Flex>
                 <Flex {...styleProps}>
-                    <Text>Linkedin</Text>
-                    <Text>{user.LinkedIn}</Text>
+                    <Text                    
+                    color={colorMode=='light' ? "#637381" : "white"}
+                    >Linkedin</Text>
+                    <Text
+                    color={colorMode=='light'? "black" : "#B9B9B9"}
+                    >{user.LinkedIn}</Text>
                 </Flex>
                 <Flex {...styleProps}>
-                    <Text>Company Name</Text>
-                    <Text>{user["Company Name"]}</Text>
+                    <Text
+                    color={colorMode=='light' ? "#637381" : "white"}
+                    >Company Name</Text>
+                    <Text
+                    color={colorMode=='light'? "black" : "#B9B9B9"}
+                    >{user["Company Name"]}</Text>
                 </Flex>
             </Stack>
 
 
             <Heading {...headingStyle}
-            bgColor={colorMode=='light' ? "gray" :"#23272C"}
+            bgColor={colorMode=='light' ? "#ECEFF3" :"#23272C"}
+            color={colorMode=='light' ? "#454F5B" : "#FFFFFF"}
+
             >Activities</Heading>
             <Stack
             padding="8px 20px" 
@@ -100,7 +121,7 @@ export const Details = () =>{
             >
                 <Text
                 fontSize="15px"
-                color={colorMode=='light'? "black":"white"}
+                color={colorMode=='light'? "#172B4D":"white"}
                 >
                     Compaign Name
                 </Text>
@@ -110,6 +131,7 @@ export const Details = () =>{
                 >
                     <Text 
                     borderRight="1px"
+                    borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
                     paddingRight="10px"
                     ><span fontWeight="400">3</span> Steps</Text>
                     <Text><span fontWeight="400">5</span> Days in Sequence</Text>
@@ -125,6 +147,8 @@ export const Details = () =>{
                     >
                         <Box
                         {...boxStyleProps}
+                        bgColor={(colorMode=='light')? "#EEF1F4" : "#23272C"}
+                        borderColor={colorMode=='light' ? "#EEF1F4": "#41464B"}
                         >
                             <Image src={emailImg} />
                         </Box>
@@ -134,7 +158,7 @@ export const Details = () =>{
                         >
                             <Text
                             {...textStyleProps}
-                            color={colorMode=='light'?"black":"white"}
+                            color={colorMode=='light'?"#172B4D":"white"}
                             >Step 1: Email</Text>
                             <Flex 
                             alignItems="center"
@@ -155,14 +179,17 @@ export const Details = () =>{
                     <Flex
                     gap="16px" 
                     >
-                        <Box {...boxStyleProps}>
+                        <Box {...boxStyleProps}
+                        bgColor={(colorMode=='light')? "#EEF1F4" : "#23272C"}
+                        borderColor={colorMode=='light' ? "#EEF1F4": "#41464B"}
+                        >
                             <Image src={emailImg} />
                         </Box>
 
                         <Stack {...stackProps}
                         >
                             <Text {...textStyleProps}
-                            color={colorMode=='light'?"black":"white"}
+                            color={colorMode=='light'?"#172B4D":"white"}
 
                             >Step 2: Email</Text>
                             <Flex 
@@ -182,13 +209,16 @@ export const Details = () =>{
                     <Flex
                     gap="16px" 
                     >
-                        <Box {...boxStyleProps}>
+                        <Box {...boxStyleProps}
+                        borderColor={colorMode=='light' ? "#EEF1F4": "#41464B"}
+                        bgColor={(colorMode=='light')? "#EEF1F4" : "#23272C"}
+                        >
                             <Image src={emailImg} />
                         </Box>
                             
                         <Stack {...stackProps}>
                             <Text  {...textStyleProps}
-                            color={colorMode=='light'?"black":"white"}
+                            color={colorMode=='light'?"#172B4D":"white"}
 
                             >Step 3: Email</Text>
                             <Flex

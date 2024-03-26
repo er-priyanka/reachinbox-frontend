@@ -19,9 +19,10 @@ export const Inbox = ({emails}) =>{
     return (
         <Box
         w="20%"
-        borderLeft="1px"
+        // borderLeft="1px"
         borderRight="1px"
-        borderColor="#33383F"
+        // borderColor="#33383F"
+        borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
         height="100vh" 
         bgColor={colorMode=="light" ? "white" :"black"}
         textAlign="center"
@@ -38,10 +39,14 @@ export const Inbox = ({emails}) =>{
             >
                 <Stack 
                 padding="2px 7px"
+                fontFamily="Open Sans"
+                fontWeight="700"
                 >
                     <Select 
                     border="none"
                     variant="unstyled"
+                    color="#4285F4" 
+                    fontSize="20px"
                     >
                         <option value="all_inbox">All Inbox(s)</option>
                     </Select>
@@ -49,9 +54,10 @@ export const Inbox = ({emails}) =>{
                     color="#7F7F7F"
                     fontFamily="Open Sans"
                     fontWeight="400"
+                    fontSize="14px"
                     >
                         <span
-                        style={{color:(colorMode=="light")?"black":"white", 
+                        style={{color:(colorMode=="light")?"#343A40":"white", 
                         fontWeight:"700"}} 
                         
                         >25/25</span> Inboxes selected
@@ -62,8 +68,10 @@ export const Inbox = ({emails}) =>{
                 w="32px"
                 h="32px"
                 borderRadius="4px"
-                padding="8px" 
+                padding="8px"
+                border="1px" 
                 bgColor={colorMode=="light" ? "white":"#25262B"}
+                borderColor={(colorMode=='light') ? "#DFE3E8" : "#25262B"}
                 // color={colorMode=="light" ? "white": "gray"}
                 >
                     <MdRefresh />
@@ -106,14 +114,17 @@ export const Inbox = ({emails}) =>{
                         color="#5C7CFA"
                         >26</Text>
                         <Text
-                        fontFamily="Inter"
                         fontSize="14px"
-                        color={colorMode=="light" ? "black":"#E6E6E6"}
+                        color={colorMode=="light" ? "#172B4D":"#E6E6E6"}
                         >New Replies</Text>
                     </Flex>
                     
                     <Select 
                     w="40%"
+                    fontFamily="Inter"
+                    fontWeight="600"
+                    fontSize="14px"
+                    color={colorMode=="light" ? "#172B4D":"#E6E6E6"}
                     variant="unstyled"
                     >
                         <option value="newest">Newest</option>
@@ -123,7 +134,8 @@ export const Inbox = ({emails}) =>{
                 {/* Bottom section */}
                 <Box 
                 borderTop="1px"
-                borderColor="#33383F"
+                // borderColor="#33383F"
+                borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
                 // padding="0px 9px"
                 >
                     {
@@ -132,7 +144,8 @@ export const Inbox = ({emails}) =>{
                             <Box
                             // borderTop="1px"
                             borderBottom="1px"
-                            borderColor="#33383F"
+                            // borderColor="#33383F"
+                            borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
                             key={i}
                             display="flex"
                             flexDirection="column"
@@ -148,21 +161,21 @@ export const Inbox = ({emails}) =>{
                                     fontFamily="Inter"
                                     >
                                         <Text 
-                                        color={colorMode=="light" ? "black":"white"}
+                                        color={colorMode=="light" ? "#343A40":"white"}
                                         fontSize="14px"
                                         fontWeight="500">{item.fromEmail}</Text>
                                         <Text
                                         fontFamily="Inter"
                                         fontWeight="400"
                                         fontSize="12px"
-                                        color="gray"
+                                        color={colorMode=='light' ? "#919EAB" : "gray"}
                                         >{getDate(item.sentAt)}</Text>
                                     </Flex>
                                     <Text
                                     w="60%"
                                     fontWeight="400"
                                     fontSize="12px"
-                                    color={colorMode=="light" ? "black":"#E1E0E0"} 
+                                    color={colorMode=="light" ? "#172B4D":"#E1E0E0"} 
                                     noOfLines={1}>{item.subject}</Text>  
                                 </Stack>
                                 
@@ -175,7 +188,7 @@ export const Inbox = ({emails}) =>{
                                     fontFamily="Open Sans"
                                     fontWeight="600"
                                     color="#57E0A6"
-                                    bgColor="#222426"
+                                    bgColor={colorMode=='light' ? "#F0F0F0" : "#222426"}
                                     fontSize="10px"
                                     >
                                         Interested
@@ -187,8 +200,8 @@ export const Inbox = ({emails}) =>{
                                     fontSize="10px"
                                     fontFamily="Open Sans"
                                     fontWeight="600"
-                                    color="#FFFFFF"
-                                    bgColor="#222426"
+                                    color={colorMode=='light' ?"#637381":"#FFFFFF"}
+                                    bgColor={colorMode=='light' ? "#F0F0F0" : "#222426"}
                                     
                                     >
                                         Campaign Name
