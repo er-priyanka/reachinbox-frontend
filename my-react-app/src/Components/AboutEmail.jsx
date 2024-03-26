@@ -1,4 +1,5 @@
 import { Box, Flex, Stack, Text, Select, Button, useColorMode } from "@chakra-ui/react";
+import { ReplyEmailPopup } from "./ReplyEmailPopup";
 
 const user = {
     "id": 4,
@@ -27,7 +28,7 @@ const user = {
 export const AboutEmail = () =>{
     const { colorMode, toggleColorMode } = useColorMode();
     return (
-        <Box textAlign="left">
+        <Box textAlign="left"  >
             {/* Header */}
             <Flex 
             borderBottom="1px"
@@ -38,6 +39,7 @@ export const AboutEmail = () =>{
             alignItems="center"
             justifyContent="space-between"
             // border={"1px"}
+            
             >
                 <Stack
                 w="49%"
@@ -156,7 +158,9 @@ export const AboutEmail = () =>{
                 color={colorMode=='light' ? "#172B4D" : "#E1E0E0"}
                 ></Box>
             </Stack>
-
+        <Box>
+            <ReplyEmailPopup />
+        </Box>
             
 
         </Box>
