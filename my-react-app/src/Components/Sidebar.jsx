@@ -4,23 +4,36 @@ import { IoIosSend } from "react-icons/io";
 import { FaInbox } from "react-icons/fa";
 import logo1 from "../Images/Logo_1.png";
 import logoBlack from "../Images/Logo_black.png";
+import { useState } from "react";
 
 
 const listItems = [
-    MdHome,
-    MdPersonSearch,
-    MdMail,
-    IoIosSend,
-    MdViewList,
-    FaInbox,
-    MdBarChart,
+    {name: "Home", icon:MdHome},
+    {name: "PersonSearch", icon:MdPersonSearch},
+    {name: "Mail", icon:MdMail},
+    {name: "Send", icon:IoIosSend},
+    {name: "ViewList", icon:MdViewList},
+    {name: "Inbox", icon:FaInbox},
+    {name: "BarChart", icon:MdBarChart},
+    
 ]
-export const Sidebar = () =>{
+
+export const Sidebar = ({contentName, setContentName}) =>{
   const {colorMode, toggleColorMode} = useColorMode();
+  
+  const handleContentName = (name) =>{
+    setContentName(name);
+    
+    // if(colorMode == 'light')
+    //   e.target.style.color='black';
+    // else
+    //   e.target.style.color='white';
+  }
+
     return (
         <Flex 
         width="4%"
-        height="100vh" 
+        minHeight="100vh" 
         direction="column"
         borderRight="1px"
         borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
@@ -69,8 +82,10 @@ export const Sidebar = () =>{
                       <Icon 
                       w="28px"
                       h="28px" 
-                      as={item}
+                      as={item.icon}
+                      onClick={()=>handleContentName(item.name)}
                       color={(colorMode=='light') ? '#919EAB' : '#AEAEAE'}
+                      cursor='pointer'
                       />
                   </Box>    
                   
@@ -93,6 +108,8 @@ export const Sidebar = () =>{
             display="flex"
             justifyContent="center"
             alignItems="center"
+            pos='fixed'
+            bottom="7px"
             >
               <Text 
               color={colorMode=='light'? "white": "white"}

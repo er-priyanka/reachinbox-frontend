@@ -29,7 +29,7 @@ export const Inbox = ({emails}) =>{
         borderRight="1px"
         // borderColor="#33383F"
         borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
-        height="100vh" 
+        minHeight="100vh" 
         bgColor={colorMode=="light" ? "white" :"black"}
         textAlign="center"
         padding="12px"

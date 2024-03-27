@@ -44,6 +44,7 @@ const fetchData = async (token) => {
 
 export const Onebox = ()=> {
   const [data, setData] = useState(null);
+  const [contentName, setContentName] = useState('Home');
   const location = useLocation();
   const token = new URLSearchParams(location.search).get('token') || 
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoic2hhaGFuZXByaXlhbmthczAxQGdtYWlsLmNvbSIsImlkIjo5LCJmaXJzdE5hbWUiOiJQcml5YW5rYSIsImxhc3ROYW1lIjoiU2hhaGFuZSJ9LCJpYXQiOjE3MTE1MTA3NDEsImV4cCI6MTc0MzA0Njc0MX0.y9LmDEUdIipLhK-jvH2uFdnaQCfXQ1FbDgxmElWTuzU";
@@ -75,10 +76,10 @@ export const Onebox = ()=> {
     <Box>
       <Flex>
         {/* sidebar  */}
-        <Sidebar />
+        <Sidebar contentName={contentName} setContentName={setContentName} />
         <Box w="96%">
             <OneboxNavbar />
-            <Content data={data} />
+            <Content contentName={contentName}  data={data} />
         </Box>
       </Flex>
     </Box>

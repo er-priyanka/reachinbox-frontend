@@ -1,7 +1,9 @@
-import { Box, Image, Stack, Heading, Text } from "@chakra-ui/react";
+import { Box, Image, Stack, Heading, Text, useColorMode } from "@chakra-ui/react";
 import no_message_img from "../Images/No_Message_illustration.png";
 
 export const NoContent = () =>{
+    const {colorMode} = useColorMode();
+
     return (
         <Stack
         w="100%"
@@ -25,7 +27,7 @@ export const NoContent = () =>{
                 >
                     <Heading 
                     fontSize="24px"
-                    color="white"
+                    color={colorMode=='light'? "black": "white"}
                     fontFamily="DM Sans"
                     fontWeight="700"
                     >It's the beginning of a legendary sales pipeline</Heading>

@@ -53,14 +53,14 @@ import { AboutEmail } from "./AboutEmail";
 //     }
 //   ]
   
-export const Content = ({data}) =>{
+export const Content = ({data, contentName}) =>{
   const { colorMode, toggleColorMode } = useColorMode();
   // const [emails, setEmails] = useState(data);
 
     return (
         <Box>
-            {/* <NoContent /> */}
-            <Flex>
+             
+            {(contentName == 'Mail')?<Flex>
                 <Inbox emails = {data} />
                 <Box
                 w="60%" 
@@ -71,6 +71,8 @@ export const Content = ({data}) =>{
                 </Box>
                 <Details data = {data}  />
             </Flex>
+
+            :<NoContent />}
         </Box>
     )
 }
