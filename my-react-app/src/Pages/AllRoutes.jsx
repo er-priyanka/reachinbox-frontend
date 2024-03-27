@@ -9,6 +9,7 @@ export const AllRoutes = ()=>{
             
             <Route path="/" element={<Login />} />
             <Route path="/onebox" element={<Onebox />} />
+            <Route path="/onebox/:thread_id" element={<Onebox />} />
 
         
         </Routes>

@@ -1,7 +1,10 @@
 import { Box, Flex, Stack, Text, Select, Button, useColorMode } from "@chakra-ui/react";
 import { ReplyEmailPopup } from "./ReplyEmailPopup";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
-const user = {
+const user = [{
     "id": 4,
     "fromName": "Shaw Adley",
     "fromEmail": "shaw@getmemeetings.com",
@@ -23,10 +26,41 @@ const user = {
     "createdAt": "2023-11-23T07:38:46.000Z",
     "updatedAt": "2023-11-23T07:38:46.000Z",
     "deletedAt": null
-  };
+  }];
+
+  const getEmailData = async(thread_id, token)=>{
+    try{
+        let res = await axios.get(`https://hiring.reachinbox.xyz/api/v1/onebox/messages/${thread_id}`,{
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": 'application/json'
+              },
+        });
+
+        return res;
+    }catch(err){
+        console.log('get email data error:', err);
+    }
+  }
 
 export const AboutEmail = () =>{
     const { colorMode, toggleColorMode } = useColorMode();
+    const { thread_id } = useParams();
+    const token = localStorage.getItem('token');
+
+    const [data, setData] = useState(user);
+
+    useEffect(()=>{
+        if(thread_id && token){
+            // console.log(token, thread_id);
+            getEmailData(thread_id, token).then(res=>{
+                setData(res.data.data);
+                console.log(res.data.data);
+            })
+        }
+        
+    }, [thread_id])
+
     return (
         <Box textAlign="left"  >
             {/* Header */}
@@ -52,12 +86,12 @@ export const AboutEmail = () =>{
                         fontWeight="600"
                         fontSize="14px"
                         color={colorMode=="light"?"#343A40":"white"}
-                        >{user.fromName}</Text>
+                        >{data[0].fromName}</Text>
                         <Text
                         fontFamily="Inter"
                         color={colorMode=='light' ? "rgba(52, 58, 64, 0.7)": "#666666"}
                         fontSize="12px"
-                        >{user.fromEmail}</Text>
+                        >{data[0].fromEmail}</Text>
                     
                 </Stack>
                 <Flex 
@@ -108,58 +142,68 @@ export const AboutEmail = () =>{
 
             {/* Content */}
 
-            <Stack
-            textAlign="left"
-            spacing="18px"
-            margin="40px 21px"
-            padding="12px 16px"
-            borderRadius="4px"
-            border="1px"
-            borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
-            bgColor={colorMode=="light"?"white":"#141517"}
-            >
-                <Stack>
-                    <Flex justifyContent="space-between">
-                        <Text
-                        fontFamily="Open Sans"
-                        fontWeight="600"
-                        fontSize="14px"
-                        color={colorMode=='light' ? "black" : "#F8FAFC"}
-                        >{user.subject}</Text>
-                        <Text
-                        fontFamily={"Inter"}
+            {
+                data && data.map((user, i) =>(
+                    <Stack
+                    key={i}
+                    textAlign="left"
+                    spacing="18px"
+                    margin="40px 21px"
+                    padding="12px 16px"
+                    borderRadius="4px"
+                    border="1px"
+                    borderColor={(colorMode=='light')? "#D8D8D8":"#343A40"}
+                    bgColor={colorMode=="light"?"white":"#141517"}
+                    >
+                        <Stack>
+                            <Flex justifyContent="space-between">
+                                <Text
+                                fontFamily="Open Sans"
+                                fontWeight="600"
+                                fontSize="14px"
+                                color={colorMode=='light' ? "black" : "#F8FAFC"}
+                                >{user.subject}</Text>
+                                <Text
+                                fontFamily={"Inter"}
+                                fontWeight={"400"}
+                                fontSize="14px"
+                                color={colorMode=='light' ? "#637381" : "#7F7F7F"}
+                                >{user.sentAt}</Text>
+                            </Flex>
+                            
+                            <Flex gap="5px"
+                            fontFamily={"Inter"}
+                            fontWeight={"400"}
+                            fontSize="14px"
+                            color={colorMode=='light' ? "#637381" : "#7F7F7F"}
+                            >
+                                <Text>from: {user.fromEmail}</Text>
+                                {
+                                    user.cc && user.cc.map((item, i)=>(
+                                        <Text key={i}>cc: {item}</Text>
+                                    ))
+                                }
+                                
+                            </Flex>
+                            <Text
+                            fontFamily={"Inter"}
+                            fontWeight={"400"}
+                            fontSize="14px"
+                            color={colorMode=='light' ? "#637381" : "#7F7F7F"}
+                            >to: {user.toEmail}</Text>
+                        </Stack>
+                        <Box dangerouslySetInnerHTML={{__html:user.body}}
+                        paddingLeft="1px"
+                        fontFamily={"Open Sans"}
                         fontWeight={"400"}
                         fontSize="14px"
-                        color={colorMode=='light' ? "#637381" : "#7F7F7F"}
-                        >{user.sentAt}</Text>
-                    </Flex>
-                    
-                    <Flex gap="5px"
-                    fontFamily={"Inter"}
-                    fontWeight={"400"}
-                    fontSize="14px"
-                    color={colorMode=='light' ? "#637381" : "#7F7F7F"}
-                    >
-                        <Text>from: {user.fromEmail}</Text>
-                        <Text>cc: {user.cc}</Text>
-                    </Flex>
-                    <Text
-                    fontFamily={"Inter"}
-                    fontWeight={"400"}
-                    fontSize="14px"
-                    color={colorMode=='light' ? "#637381" : "#7F7F7F"}
-                    >to: {user.toEmail}</Text>
-                </Stack>
-                <Box dangerouslySetInnerHTML={{__html:user.body}}
-                paddingLeft="1px"
-                fontFamily={"Open Sans"}
-                fontWeight={"400"}
-                fontSize="14px"
-                color={colorMode=='light' ? "#172B4D" : "#E1E0E0"}
-                ></Box>
-            </Stack>
+                        color={colorMode=='light' ? "#172B4D" : "#E1E0E0"}
+                        ></Box>
+                    </Stack>
+                ))
+            }
         <Box>
-            <ReplyEmailPopup />
+            <ReplyEmailPopup threadId={thread_id} token={token} />
         </Box>
             
 

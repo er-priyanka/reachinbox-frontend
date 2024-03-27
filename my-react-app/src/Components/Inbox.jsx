@@ -1,6 +1,7 @@
 import { Box, Flex, Stack, Select, Text, Input, InputGroup, InputLeftElement, Button, useColorMode } from "@chakra-ui/react";
 import { MdRefresh } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
+import { redirect, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -12,10 +13,15 @@ export const getDate = (data)=>{
 
 export const Inbox = ({emails}) =>{
     const { colorMode, toggleColorMode } = useColorMode();
+    const navigate = useNavigate();
     // const [emails, setEmails] = useState(data);
 
-    getDate("2023-11-23T04:08:45.000Z");
+    // getDate("2023-11-23T04:08:45.000Z");
     
+    const handleClick = (threadId) =>{
+        navigate(`/onebox/${threadId}`)
+    }
+
     return (
         <Box
         w="20%"
@@ -151,6 +157,8 @@ export const Inbox = ({emails}) =>{
                             flexDirection="column"
                             gap="8px"
                             padding="12px 8px"
+                            cursor='pointer'
+                            onClick={()=>handleClick(item.threadId)}
                             >   
                                 <Stack
                                 textAlign="left"

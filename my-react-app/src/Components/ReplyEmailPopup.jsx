@@ -31,6 +31,8 @@ import person_removeDark from "../SvgImages/person_removeDark.svg";
 import person_removeLight from "../SvgImages/person_removeLight.svg";
 import unfold_moreDark from "../SvgImages/unfold_moreDark.svg";
 import unfold_moreLight from "../SvgImages/unfold_moreLight.svg";
+import { useState } from "react";
+import axios from 'axios';
 
 
 const svgList = [
@@ -41,13 +43,62 @@ const svgList = [
     {lightSvg: person_removeLight, darkSvg: person_removeDark},
     {lightSvg: unfold_moreLight, darkSvg: unfold_moreDark},
 ];
-export const ReplyEmailPopup = () =>{
+
+const postData = async (threadId, data, token) =>{
+
+    try{
+        const res = await axios.post(`https://hiring.reachinbox.xyz/api/v1/onebox/reply/${threadId}`, data, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": 'application/json'
+            },
+        })
+
+        return res;
+
+    }catch(err){
+        console.log(err);
+    }
+    
+}
+
+const iniState = {
+    "toName": "Mitrajit",
+    "to": "chandra.rupam@gmail.com",
+    "from": "mitrajit2022@gmail.com",
+    "fromName": "Mitrajit",
+    "subject": "Optimize Your Recruitment Efforts with Expert Support",
+    "body": "<p>Hello how are you</p>",
+    "references": [
+        "<dea5a0c2-336f-1dc3-4994-191a0ad3891a@gmail.com>",
+        "<CAN5Dvwu24av80BmEg9ZVDWaP2+hTOrBQn9KhjfFkZZX_Do88FA@mail.gmail.com>",
+        "<CAN5DvwuzPAhoBEpQGRUOFqZF5erXc=B98Ew_5zbHF5dmeKWZMQ@mail.gmail.com>",
+        "<a1383d57-fdee-60c0-d46f-6bc440409e84@gmail.com>"
+    ],
+    "inReplyTo": "<a1383d57-fdee-60c0-d46f-6bc440409e84@gmail.com>"
+};
+
+export const ReplyEmailPopup = ({threadId, token}) =>{
     const {colorMode} = useColorMode();
+    const [data, setData] = useState(iniState);
+
+    const handleChange = (e)=>{
+        const {name, value} = e.target;
+        // console.log(name, value);
+        setData({...data, [name]:value});
+        // console.log(data);
+    }
+
+    const handleSubmit = ()=>{
+        postData(threadId, data, token).then(res=>{
+            console.log(res);
+        }).catch(err=>{
+            console.log(err);
+        });
+    }
+
     return (
         <Box>
-            
-
-
             <Popover placement='top-start'>
                 <PopoverTrigger>
                 {/*  Reply button */}
@@ -99,6 +150,8 @@ export const ReplyEmailPopup = () =>{
                                 >To:</InputLeftAddon>
                                 <Input
                                 ml="8px" 
+                                name='to'
+                                onChange={handleChange}
                                 color={colorMode=='light'? "black" : "#E7E7E7"}
                                 placeholder="jeane@icloud.com" />
                             </InputGroup>
@@ -116,6 +169,8 @@ export const ReplyEmailPopup = () =>{
                                 >From:</InputLeftAddon>
                                 <Input
                                 ml="8px" 
+                                name='from'
+                                onChange={handleChange}
                                 color={colorMode=='light'? "black" : "#E7E7E7"}
                                 placeholder="peter@reachinbox.com" />
                             </InputGroup>
@@ -134,6 +189,8 @@ export const ReplyEmailPopup = () =>{
                                 >Subject:</InputLeftAddon>
                                 <Input
                                 ml="8px" 
+                                name='subject'
+                                onChange={handleChange}
                                 color={colorMode=='light'? "black" : "#E7E7E7"}
                                 placeholder="Warmup Welcome" />
                             </InputGroup>
@@ -142,13 +199,14 @@ export const ReplyEmailPopup = () =>{
                             w="100%" 
                             p="0px 32px 8px 32px"
                             // borderBottom='1px'
-                            
                             variant='unstyled'
                             >
                                 <Textarea
                                 ml="8px"
                                 minH="30vh"
                                 resize={'none'}
+                                name='body'
+                                onChange={handleChange}
                                 color={colorMode=='light'? "black" : "white"}
                                 placeholder="Hi Jeanne," />
                             </InputGroup>
@@ -177,6 +235,7 @@ export const ReplyEmailPopup = () =>{
                             alignItems='center'
                             alignContent='center'
                             rightIcon={<MdArrowDropDown />}
+                            onClick={handleSubmit}
                             >
                                 Send
                             </Button>
