@@ -13,6 +13,7 @@ import { Box,
     PopoverBody,
     Image,
     Flex,
+    useToast,
     useColorMode } from "@chakra-ui/react";
 import { MdReply, 
     MdArrowDropDown, 
@@ -64,11 +65,11 @@ const postData = async (threadId, data, token) =>{
 
 const iniState = {
     "toName": "Mitrajit",
-    "to": "chandra.rupam@gmail.com",
-    "from": "mitrajit2022@gmail.com",
+    "to": "",
+    "from": "",
     "fromName": "Mitrajit",
-    "subject": "Optimize Your Recruitment Efforts with Expert Support",
-    "body": "<p>Hello how are you</p>",
+    "subject": "",
+    "body": "",
     "references": [
         "<dea5a0c2-336f-1dc3-4994-191a0ad3891a@gmail.com>",
         "<CAN5Dvwu24av80BmEg9ZVDWaP2+hTOrBQn9KhjfFkZZX_Do88FA@mail.gmail.com>",
@@ -81,6 +82,7 @@ const iniState = {
 export const ReplyEmailPopup = ({threadId, token}) =>{
     const {colorMode} = useColorMode();
     const [data, setData] = useState(iniState);
+    const toast = useToast();
 
     const handleChange = (e)=>{
         const {name, value} = e.target;
@@ -92,7 +94,19 @@ export const ReplyEmailPopup = ({threadId, token}) =>{
     const handleSubmit = ()=>{
         postData(threadId, data, token).then(res=>{
             console.log(res);
+            setData(iniState);
+            toast({
+                title: "Reply successful",
+                status: 'success',
+                isClosable: true
+            });
+
         }).catch(err=>{
+            toast({
+                title: err.message,
+                status: 'error',
+                isClosable: true
+            });
             console.log(err);
         });
     }
@@ -151,6 +165,7 @@ export const ReplyEmailPopup = ({threadId, token}) =>{
                                 <Input
                                 ml="8px" 
                                 name='to'
+                                value={data.to}
                                 onChange={handleChange}
                                 color={colorMode=='light'? "black" : "#E7E7E7"}
                                 placeholder="jeane@icloud.com" />
@@ -170,6 +185,7 @@ export const ReplyEmailPopup = ({threadId, token}) =>{
                                 <Input
                                 ml="8px" 
                                 name='from'
+                                value={data.from}
                                 onChange={handleChange}
                                 color={colorMode=='light'? "black" : "#E7E7E7"}
                                 placeholder="peter@reachinbox.com" />
@@ -190,6 +206,7 @@ export const ReplyEmailPopup = ({threadId, token}) =>{
                                 <Input
                                 ml="8px" 
                                 name='subject'
+                                value={data.subject}
                                 onChange={handleChange}
                                 color={colorMode=='light'? "black" : "#E7E7E7"}
                                 placeholder="Warmup Welcome" />
@@ -206,6 +223,7 @@ export const ReplyEmailPopup = ({threadId, token}) =>{
                                 minH="30vh"
                                 resize={'none'}
                                 name='body'
+                                value={data.body}
                                 onChange={handleChange}
                                 color={colorMode=='light'? "black" : "white"}
                                 placeholder="Hi Jeanne," />
