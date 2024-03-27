@@ -61,7 +61,8 @@ export const Login = () => {
             borderRadius={"4px"}
             ><FcGoogle /> 
             <Link 
-            href='https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:3000/onebox'
+            // href='https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=http://localhost:3000/onebox'
+            href='https://hiring.reachinbox.xyz/api/v1/auth/google-login?redirect_to=https://reachinbox-frontend-app.netlify.app/onebox'
             >
               Sign Up with Google
             </Link>
